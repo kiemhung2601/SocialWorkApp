@@ -2,7 +2,7 @@
     package="com.example.socialworkscoreapp">
    <application
         android:label="Social Work"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
