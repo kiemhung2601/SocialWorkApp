@@ -13,7 +13,7 @@ class NotificationStudentPage extends StatefulWidget {
 class _NotificationStudentPageState extends State<NotificationStudentPage> {
   late Icon _iconTitle;
   late String _titleNotification;
-  List type = [1, 2, 1, 3, 1, 3, 3, 2, 1];
+  List type = [1, 2, 2, 1, 2, 2, 1, 1, 1];
   Widget _buildAppBarView() {
     return AppBar(
       elevation: 0.0,
@@ -50,12 +50,10 @@ class _NotificationStudentPageState extends State<NotificationStudentPage> {
   Widget _viewNotification(int type) {
     if (type == 1) {
       _iconTitle =
-          const Icon(Icons.add_to_queue, color: Color(Constant.mainColorIcon));
-      _titleNotification = 'Đăng ký';
-    } else if (type == 2) {
-      _iconTitle = Icon(Icons.remove_from_queue, color: Colors.yellow.shade500);
-      _titleNotification = 'Hủy đăng ký';
-    } else {
+          const Icon(Icons.event_available, color: Color(Constant.mainColorIcon));
+      _titleNotification = 'Sự kiện';
+    }
+    else {
       _iconTitle = const Icon(Icons.check_box_outlined, color: Colors.green);
       _titleNotification = 'Điểm danh';
     }
@@ -118,7 +116,7 @@ class _NotificationStudentPageState extends State<NotificationStudentPage> {
               height: 10,
             ),
             const Text(
-              'Đăng ký thành công',
+              'Vừa có sự kiện mới',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
             ),
             const Text(
