@@ -126,36 +126,36 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _forgotPasswordView(Size size){
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        color: Colors.white,
-        width: double.infinity,
-        height: size.height * 0.1,
-        child: Container(
-          width: double.infinity,
-          height: size.height * 0.1,
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(100),
-              topRight: Radius.circular(100),
-            ),
-            color: Color(Constant.mainColor),
-          ),
-          alignment: Alignment.center,
-          child: InkWell(
-            child: const Text(
-              "Quên mật khẩu?",
-              style: TextStyle(
-                  fontSize: 15, fontWeight: FontWeight.w500),
-            ),
-            onTap: () => {},
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget _forgotPasswordView(Size size){
+  //   return Align(
+  //     alignment: Alignment.bottomCenter,
+  //     child: Container(
+  //       color: Colors.white,
+  //       width: double.infinity,
+  //       height: size.height * 0.1,
+  //       child: Container(
+  //         width: double.infinity,
+  //         height: size.height * 0.1,
+  //         decoration: const BoxDecoration(
+  //           borderRadius: BorderRadius.only(
+  //             topLeft: Radius.circular(100),
+  //             topRight: Radius.circular(100),
+  //           ),
+  //           color: Color(Constant.mainColor),
+  //         ),
+  //         alignment: Alignment.center,
+  //         child: InkWell(
+  //           child: const Text(
+  //             "Quên mật khẩu?",
+  //             style: TextStyle(
+  //                 fontSize: 15, fontWeight: FontWeight.w500),
+  //           ),
+  //           onTap: () => {},
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -213,7 +213,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              _forgotPasswordView(size),
+              // _forgotPasswordView(size),
             ]),
           ),
         ),

@@ -50,10 +50,9 @@ class _NewsStudentPageState extends State<NewsStudentPage> {
     );
   }
 
-  Widget _buildIndicator() =>
-      AnimatedSmoothIndicator(
-          activeIndex: activeIndex,
-          count: 5,
+  Widget _buildIndicator() => AnimatedSmoothIndicator(
+        activeIndex: activeIndex,
+        count: 5,
         effect: CustomizableEffect(
           activeDotDecoration: DotDecoration(
             width: 32,
@@ -75,17 +74,17 @@ class _NewsStudentPageState extends State<NewsStudentPage> {
         ),
       );
 
-
-
   Widget _buildScrollHorizontal(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SizedBox(height: 5,),
+        const SizedBox(
+          height: 5,
+        ),
         CarouselSlider(
           options: CarouselOptions(
-            height: size.height/3,
+            height: size.height / 3,
             enlargeCenterPage: true,
             enlargeStrategy: CenterPageEnlargeStrategy.height,
             onPageChanged: (index, reason) =>
@@ -107,12 +106,12 @@ class _NewsStudentPageState extends State<NewsStudentPage> {
                           child: Image.network(
                             'https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?cs=srgb&dl=pexels-james-wheeler-417074.jpg&fm=jpg',
                             fit: BoxFit.cover,
-                            height: size.height/3,
+                            height: size.height / 3,
                           ),
                         ),
                         Container(
                           width: size.width,
-                          height: size.height/3,
+                          height: size.height / 3,
                           margin: const EdgeInsets.symmetric(horizontal: 5),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
@@ -236,13 +235,13 @@ class _NewsStudentPageState extends State<NewsStudentPage> {
         itemCount: 10,
         itemBuilder: (context, index) {
           return InkWell(
-              child: _viewEvent(_urlImage, _title, _score, _date),
+            child: _viewEvent(_urlImage, _title, _score, _date),
             onTap: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (BuildContext context) =>
-                      const DetailsNewsPage()));
+                          const DetailsNewsPage()));
             },
           );
         });
@@ -253,7 +252,6 @@ class _NewsStudentPageState extends State<NewsStudentPage> {
       triggerMode: RefreshIndicatorTriggerMode.onEdge,
       edgeOffset: 40,
       onRefresh: _refresh,
-
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
