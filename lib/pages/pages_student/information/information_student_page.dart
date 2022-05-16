@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:socialwork/constant.dart';
+
+import '../../../utils/constants.dart';
+import '../../../widgets/text_custom_widget.dart';
+import '../home/home_page_student.dart';
 
 class InformationStudentPage extends StatefulWidget {
   const InformationStudentPage({Key? key}) : super(key: key);
@@ -12,30 +15,42 @@ class InformationStudentPage extends StatefulWidget {
 class _InformationStudentPageState extends State<InformationStudentPage> {
   bool _showInformation = false;
 
-  Widget _buildAppBarView(){
+  Widget _buildAppBarView() {
     return AppBar(
-
+      centerTitle: true,
       elevation: 0.0,
-      title: const Text('Thông tin',
-          style: TextStyle(
-            fontSize: 25,
-            color: Color(Constant.mainColorIcon),
-            fontWeight: FontWeight.w600,
-          )),
-      backgroundColor: const Color(Constant.mainColor),
+      title: const TextCustom(
+        'Thông tin',
+        fontSize: Dimens.bigText1,
+        color: Colors.white,
+      ),
+      backgroundColor: ConstColors.primary,
       leading: IconButton(
         icon: const Icon(
           Icons.arrow_back,
-          color: Color(Constant.mainColorIcon),
+          color: Colors.white,
         ),
         onPressed: () {
           Navigator.pop(context);
         },
       ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.home, color: Colors.white),
+          onPressed: () {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => const HomePageStudent()),
+                (route) => false);
+          },
+        ),
+      ],
     );
   }
 
-  Widget _buildCardStudent(BuildContext context, String name, String idStudent, String scoreDay) {
+  Widget _buildCardStudent(
+      BuildContext context, String name, String idStudent, String scoreDay) {
     Size size = MediaQuery.of(context).size;
     return Container(
       height: 200,
@@ -75,13 +90,11 @@ class _InformationStudentPageState extends State<InformationStudentPage> {
             flex: 3,
             child: Container(
               alignment: Alignment.center,
-              child: Text(
+              child: TextCustom(
                 name.toUpperCase(),
-                style: const TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white),
-                textAlign: TextAlign.center,
+                typeText: TypeText.title,
+                fontSize: Dimens.bigText1,
+                color: Colors.white,
               ),
               margin: const EdgeInsets.only(top: 5, bottom: 5),
             ),
@@ -91,19 +104,15 @@ class _InformationStudentPageState extends State<InformationStudentPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
+                  TextCustom(
                     'MSSV: $idStudent',
-                    style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white70),
+                    typeText: TypeText.body,
+                    color: ConstColors.lightGray2,
                   ),
-                  Text(
-                    'Ngày công: $scoreDay Days',
-                    style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white70),
+                  TextCustom(
+                    'Ngày công: $scoreDay ngày',
+                    typeText: TypeText.body,
+                    color: ConstColors.lightGray2,
                   ),
                 ],
               )),
@@ -112,8 +121,9 @@ class _InformationStudentPageState extends State<InformationStudentPage> {
     );
   }
 
-  Widget _buildInformationStudent(BuildContext context, String urlImage, String date, String group, String year, String major, String department) {
-    if(_showInformation){
+  Widget _buildInformationStudent(BuildContext context, String urlImage,
+      String date, String group, String year, String major, String department) {
+    if (_showInformation) {
       return Column(
         children: [
           Container(
@@ -134,9 +144,130 @@ class _InformationStudentPageState extends State<InformationStudentPage> {
                 image: NetworkImage(urlImage),
               ),
             ),
-
           ),
-          const SizedBox(height: 15,),
+          const SizedBox(
+            height: 15,
+          ),
+          Container(
+            width: double.infinity,
+            height: 40,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Colors.white,
+            ),
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            alignment: Alignment.center,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const TextCustom(
+                  'Ngày sinh: ',
+                  typeText: TypeText.body,
+                  fontSize: Dimens.title,
+                  margin: EdgeInsets.all(0),
+                ),
+                TextCustom(
+                  date,
+                  typeText: TypeText.title,
+                  fontSize: Dimens.title,
+                  margin: const EdgeInsets.all(0),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            width: double.infinity,
+            height: 40,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Colors.white,
+            ),
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const TextCustom(
+                  'Lớp: ',
+                  typeText: TypeText.body,
+                  fontSize: Dimens.title,
+                  margin: EdgeInsets.all(0),
+                ),
+                TextCustom(
+                  group,
+                  typeText: TypeText.title,
+                  fontSize: Dimens.title,
+                  margin: const EdgeInsets.all(0),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            width: double.infinity,
+            height: 40,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Colors.white,
+            ),
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const TextCustom(
+                  'Khóa: ',
+                  typeText: TypeText.body,
+                  fontSize: Dimens.title,
+                  margin: EdgeInsets.all(0),
+                ),
+                TextCustom(
+                  year,
+                  typeText: TypeText.title,
+                  fontSize: Dimens.title,
+                  margin: const EdgeInsets.all(0),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            width: double.infinity,
+            height: 40,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Colors.white,
+            ),
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const TextCustom(
+                  'Chuyên ngành: ',
+                  typeText: TypeText.body,
+                  fontSize: Dimens.title,
+                  margin: EdgeInsets.all(0),
+                ),
+                TextCustom(
+                  major,
+                  typeText: TypeText.title,
+                  fontSize: Dimens.title,
+                  margin: const EdgeInsets.all(0),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
           Container(
             width: double.infinity,
             height: 40,
@@ -146,60 +277,28 @@ class _InformationStudentPageState extends State<InformationStudentPage> {
             ),
             padding: const EdgeInsets.only(left: 10, right: 10),
             alignment: Alignment.centerLeft,
-            child: Text("Ngày sinh: $date", style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),),
-          ),
-          const SizedBox(height: 10,),
-          Container(
-            width: double.infinity,
-            height: 40,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const TextCustom(
+                  'Khoa: ',
+                  typeText: TypeText.body,
+                  fontSize: Dimens.title,
+                  margin: EdgeInsets.all(0),
+                ),
+                TextCustom(
+                  department,
+                  typeText: TypeText.title,
+                  fontSize: Dimens.title,
+                  margin: const EdgeInsets.all(0),
+                ),
+              ],
             ),
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            alignment: Alignment.centerLeft,
-            child: Text('Lớp: $group', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),),
-          ),
-          const SizedBox(height: 10,),
-          Container(
-            width: double.infinity,
-            height: 40,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              color: Colors.white,
-            ),
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            alignment: Alignment.centerLeft,
-            child: Text('Khóa: $year', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),),
-          ),
-          const SizedBox(height: 10,),
-          Container(
-            width: double.infinity,
-            height: 40,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              color: Colors.white,
-            ),
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            alignment: Alignment.centerLeft,
-            child: Text('Chuyên ngành: $major', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),),
-          ),
-          const SizedBox(height: 10,),
-          Container(
-            width: double.infinity,
-            height: 40,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              color: Colors.white,
-            ),
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            alignment: Alignment.centerLeft,
-            child: Text('Khoa: $department', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),),
           ),
         ],
       );
-    }
-    else{
+    } else {
       return const SizedBox();
     }
   }
@@ -212,7 +311,8 @@ class _InformationStudentPageState extends State<InformationStudentPage> {
     String _idStudent = '141801773';
     String _scoreDay = '10';
 
-    String _urlImage = 'https://media.istockphoto.com/photos/portrait-of-happy-asian-handsome-young-man-in-fashionable-clothing-picture-id1283231614?s=612x612';
+    String _urlImage =
+        'https://media.istockphoto.com/photos/portrait-of-happy-asian-handsome-young-man-in-fashionable-clothing-picture-id1283231614?s=612x612';
     var _dateBirth = DateTime.now();
     String _date = formatter.format(_dateBirth);
     String _groupStudent = '18DTH5';
@@ -223,7 +323,8 @@ class _InformationStudentPageState extends State<InformationStudentPage> {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(50.0), child: _buildAppBarView()),
+          preferredSize: const Size.fromHeight(50.0),
+          child: _buildAppBarView()),
       body: SingleChildScrollView(
         reverse: true,
         child: Padding(
@@ -234,12 +335,11 @@ class _InformationStudentPageState extends State<InformationStudentPage> {
             children: [
               InkWell(
                 child: _buildCardStudent(context, _name, _idStudent, _scoreDay),
-                onTap: (){
+                onTap: () {
                   setState(() {
-                    if(_showInformation){
+                    if (_showInformation) {
                       _showInformation = false;
-                    }
-                    else{
+                    } else {
                       _showInformation = true;
                     }
                   });
@@ -248,7 +348,8 @@ class _InformationStudentPageState extends State<InformationStudentPage> {
               const SizedBox(
                 height: 15,
               ),
-              _buildInformationStudent(context,_urlImage,_date,_groupStudent,_yearStudent, _majorStudent, _departmentStudent),
+              _buildInformationStudent(context, _urlImage, _date, _groupStudent,
+                  _yearStudent, _majorStudent, _departmentStudent),
             ],
           ),
         ),

@@ -1,40 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:socialwork/constant.dart';
-import 'package:socialwork/pages/pages_student/details_news_page.dart';
 
-class HistoryStudentPage extends StatefulWidget {
-  const HistoryStudentPage({Key? key}) : super(key: key);
+import '../pages/pages_student/details_news/details_news_page.dart';
+import '../utils/constants.dart';
+import '../widgets/text_custom_widget.dart';
+
+class RegisterTab extends StatefulWidget {
+
+  const RegisterTab(
+      {Key? key,})
+      : super(key: key);
 
   @override
-  _HistoryStudentPageState createState() => _HistoryStudentPageState();
+  State<RegisterTab> createState() => _RegisterTabState();
 }
 
-class _HistoryStudentPageState extends State<HistoryStudentPage> {
+class _RegisterTabState extends State<RegisterTab> {
+
   late Icon _iconTitle;
   late String _titleHistory;
-  List type = [1, 2, 3, 3, 2, 2, 1, 3, 1];
-
-  Widget _buildAppBarView() {
-    return AppBar(
-      elevation: 0.0,
-      title: const Text('Lịch sử',
-          style: TextStyle(
-            fontSize: 25,
-            color: Color(Constant.mainColorIcon),
-            fontWeight: FontWeight.w600,
-          )),
-      backgroundColor: const Color(Constant.mainColor),
-      leading: IconButton(
-        icon: const Icon(
-          Icons.arrow_back,
-          color: Color(Constant.mainColorIcon),
-        ),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
-    );
-  }
+  List type = [1, 1, 1, 1, 1, 1, 1, 1];
 
   Widget _viewLine() {
     return Container(
@@ -49,17 +33,19 @@ class _HistoryStudentPageState extends State<HistoryStudentPage> {
 
   Widget _viewHistory(int type) {
     if (type == 1) {
-      _iconTitle =
-      const Icon(Icons.check_circle_outline, color: Colors.green,);
+      _iconTitle = const Icon(
+        Icons.check_circle_outline,
+        color: Colors.green,
+      );
       _titleHistory = 'Đăng ký thành công';
-    }
-    else if(type == 2){
-      _iconTitle =
-      const Icon(Icons.remove_circle_outline, color: Colors.red);
+    } else if (type == 2) {
+      _iconTitle = const Icon(Icons.remove_circle_outline, color: Colors.red);
       _titleHistory = 'Hủy đăng ký thành công';
-    }
-    else {
-      _iconTitle = const Icon(Icons.local_fire_department, color: Color(Constant.mainColor),);
+    } else {
+      _iconTitle = const Icon(
+        Icons.local_fire_department,
+        color: ConstColors.blue,
+      );
       _titleHistory = 'Điểm danh thành công';
     }
     return Container(
@@ -77,7 +63,7 @@ class _HistoryStudentPageState extends State<HistoryStudentPage> {
           borderRadius: const BorderRadius.all(Radius.circular(15)),
           border: Border.all(width: 1, color: Colors.black45)),
       child: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(Dimens.paddingView),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -85,70 +71,71 @@ class _HistoryStudentPageState extends State<HistoryStudentPage> {
               children: const [
                 Expanded(
                     flex: 1,
-                    child: Icon(Icons.date_range,
-                        color: Color(Constant.mainColorIcon))),
+                    child: Icon(Icons.date_range, color: ConstColors.orange)),
                 Expanded(
                     flex: 1,
-                    child:
-                        Icon(Icons.alarm, color: Color(Constant.mainColorIcon)))
+                    child: Icon(Icons.alarm, color: ConstColors.orange))
               ],
-            ),
-            const SizedBox(
-              height: 5,
             ),
             Row(
               children: const [
                 Expanded(
                     flex: 1,
                     child: Align(
-                        child: Text(
-                      '25/02/2022',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                    ))),
+                        child: TextCustom(
+                          '25/02/2022',
+                          typeText: TypeText.title,
+                          fontSize: Dimens.title,
+                          // margin: EdgeInsets.all(0),
+                        ))),
                 Expanded(
                     flex: 1,
                     child: Align(
-                        child: Text('16:20',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.w600))))
+                        child: TextCustom(
+                          '16:20',
+                          typeText: TypeText.title,
+                          fontSize: Dimens.title,
+                          margin: EdgeInsets.all(0),
+                        )))
               ],
             ),
-            const SizedBox(
-              height: 15,
-            ),
             _viewLine(),
-            const SizedBox(
-              height: 15,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                TextCustom(
                   _titleHistory,
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  typeText: TypeText.title,
+                  fontSize: Dimens.title,
+                  // margin: EdgeInsets.all(0),
                 ),
-                const SizedBox(width: 10,),
+                const SizedBox(
+                  width: 10,
+                ),
                 _iconTitle,
               ],
             ),
-            const Text(
+            const TextCustom(
               "Đây chỉ là một đoạn test nhỏ thôi nhé, các bạn nhớ đọc kĩ nha hahaha hahaha hâhaa",
-              style: TextStyle(fontSize: 16),
+              typeText: TypeText.body,
+              fontSize: Dimens.nav,
+              margin: EdgeInsets.only(bottom: Dimens.marginView),
             ),
             Row(
               children: const [
                 Icon(
                   Icons.date_range,
-                  color: Color(Constant.mainColorIcon),
+                  color: ConstColors.orange,
                 ),
                 SizedBox(
                   width: 10,
                 ),
-                Text('Ngày công: 0.5',
-                    style: TextStyle(
-                      fontSize: 14,
-                    )),
+                TextCustom(
+                  'Ngày công: 0.5',
+                  typeText: TypeText.body,
+                  fontSize: Dimens.nav,
+                  margin: EdgeInsets.all(0),
+                ),
               ],
             )
           ],
@@ -157,7 +144,7 @@ class _HistoryStudentPageState extends State<HistoryStudentPage> {
     );
   }
 
-  Widget _buildListHistory(){
+  Widget _buildListHistory() {
     return ListView.builder(
         shrinkWrap: true,
         itemCount: type.length,
@@ -184,14 +171,10 @@ class _HistoryStudentPageState extends State<HistoryStudentPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(50.0),
-          child: _buildAppBarView()),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: _buildListHistory(),
-      ),
+    return Column(
+      children: [
+        Expanded(child: _buildListHistory(),),
+      ],
     );
   }
 }

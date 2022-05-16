@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:socialwork/pages/login_page.dart';
+import 'package:socialwork/pages/login/login_page.dart';
 
 class GetStartPage extends StatelessWidget {
   const GetStartPage({Key? key}) : super(key: key);

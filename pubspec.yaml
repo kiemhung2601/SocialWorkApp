@@ -20,6 +20,7 @@ dependencies:
   carousel_slider: ^4.0.0
   smooth_page_indicator: ^1.0.0+2
   percent_indicator: ^4.0.0
+  velocity_x: ^3.4.0
 
 dev_dependencies:
   flutter_test:
@@ -122,3 +123,11 @@ flutter:
 
   assets:
     - assets/
+
+  fonts:
+    - family: SFPro
+      fonts:
+        - asset: res/fonts/SF-Pro-Text-Semibold.otf
+          weight: 600
+        - asset: res/fonts/SF-Pro-Text-Regular.otf
+          weight: 400

@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:socialwork/pages/get_start_page.dart';
-import 'package:socialwork/pages/login_page.dart';
-import 'package:socialwork/pages/pages_student/information_student_page.dart';
+import 'package:socialwork/pages/login/login_page.dart';
+import 'package:socialwork/pages/pages_student/information/information_student_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {

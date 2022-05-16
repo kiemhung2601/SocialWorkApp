@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:socialwork/pages/pages_student/details_news_page.dart';
+import 'package:socialwork/pages/pages_student/details_news/details_news_page.dart';
+import 'package:socialwork/pages/pages_student/home/home_page_student.dart';
+import 'package:socialwork/widgets/text_custom_widget.dart';
 
-import '../../constant.dart';
+import '../../../utils/constants.dart';
 
 class NewsStudentPage extends StatefulWidget {
   const NewsStudentPage({Key? key}) : super(key: key);
@@ -31,22 +33,34 @@ class _NewsStudentPageState extends State<NewsStudentPage> {
   Widget _buildAppBarView() {
     return AppBar(
       elevation: 0.0,
-      title: const Text('Bảng tin',
-          style: TextStyle(
-            fontSize: 25,
-            color: Color(Constant.mainColorIcon),
-            fontWeight: FontWeight.w600,
-          )),
-      backgroundColor: const Color(Constant.mainColor),
+      title: const TextCustom(
+        'Bảng tin',
+        fontSize: Dimens.bigText1,
+        color: Colors.white,
+      ),
+      backgroundColor: ConstColors.primary,
+      centerTitle: true,
       leading: IconButton(
         icon: const Icon(
           Icons.arrow_back,
-          color: Color(Constant.mainColorIcon),
+          color: Colors.white,
         ),
         onPressed: () {
           Navigator.pop(context);
         },
       ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.home, color: Colors.white),
+          onPressed: () {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => const HomePageStudent()),
+                (route) => false);
+          },
+        ),
+      ],
     );
   }
 
@@ -161,12 +175,6 @@ class _NewsStudentPageState extends State<NewsStudentPage> {
   }
 
   Widget _viewEvent(String urlImage, String title, double score, String time) {
-    String getTruncatedTitle(String text, int truncateNumber) {
-      return text.length > truncateNumber
-          ? text.substring(0, truncateNumber) + "..."
-          : text;
-    }
-
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       margin: const EdgeInsets.symmetric(vertical: 5),
@@ -196,10 +204,11 @@ class _NewsStudentPageState extends State<NewsStudentPage> {
               const SizedBox(
                 height: 10,
               ),
-              Text(
-                getTruncatedTitle(title, 60),
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              TextCustom(
+                title,
+                hadMaxLines: true,
+                typeText: TypeText.title,
+                margin: const EdgeInsets.all(0),
               ),
               const SizedBox(
                 height: 20,
@@ -207,13 +216,17 @@ class _NewsStudentPageState extends State<NewsStudentPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  TextCustom(
                     '$score ngày công tác',
-                    style: TextStyle(color: Colors.grey.shade700),
+                    typeText: TypeText.body,
+                    color: ConstColors.lightGray,
+                    fontSize: Dimens.nav,
                   ),
-                  Text(
+                  TextCustom(
                     time,
-                    style: TextStyle(color: Colors.grey.shade700),
+                    typeText: TypeText.body,
+                    color: ConstColors.lightGray,
+                    fontSize: Dimens.nav,
                   ),
                 ],
               )
@@ -258,14 +271,19 @@ class _NewsStudentPageState extends State<NewsStudentPage> {
           Expanded(flex: 5, child: _buildScrollHorizontal(context)),
           Container(
               margin: const EdgeInsets.all(10),
-              child: const Text(
+              child: const TextCustom(
                 'Danh sách sự kiện',
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600),
+                margin: EdgeInsets.all(0),
+                typeText: TypeText.title,
+                fontSize: Dimens.header,
               )),
-          Expanded(flex: 6, child: _buildListEvent()),
+          Expanded(
+              flex: 6,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    left: Dimens.paddingView, right: Dimens.paddingView),
+                child: _buildListEvent(),
+              )),
         ],
       ),
     );
