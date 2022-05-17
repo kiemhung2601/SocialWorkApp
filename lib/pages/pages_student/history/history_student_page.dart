@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:socialwork/pages/pages_student/details_news/details_news_page.dart';
 import 'package:socialwork/tab_view/history_rollup_tab.dart';
 import 'package:socialwork/utils/constants.dart';
 import 'package:socialwork/utils/utils.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../../routes.dart';
 import '../../../tab_view/history_register_tab.dart';
 import '../../../tab_view/history_unregister_tab.dart';
 import '../../../widgets/tab_bar_custom_widget.dart';
 import '../../../widgets/text_custom_widget.dart';
-import '../home/home_page_student.dart';
 
 class HistoryStudentPage extends StatefulWidget {
   const HistoryStudentPage({Key? key}) : super(key: key);
@@ -51,18 +50,14 @@ class _HistoryStudentPageState extends State<HistoryStudentPage>
           color: Colors.white,
         ),
         onPressed: () {
-          Navigator.pop(context);
+          context.vxNav.pop();
         },
       ),
       actions: [
         IconButton(
           icon: const Icon(Icons.home, color: Colors.white),
           onPressed: () {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => const HomePageStudent()),
-                (route) => false);
+            context.vxNav.clearAndPush(Uri.parse(RoutesPath.homeRoute));
           },
         ),
       ],

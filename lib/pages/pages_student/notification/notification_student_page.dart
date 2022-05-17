@@ -3,11 +3,11 @@ import 'package:socialwork/tab_view/notification_event_tab.dart';
 import 'package:socialwork/tab_view/notification_rollup_tab.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../../routes.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/utils.dart';
 import '../../../widgets/tab_bar_custom_widget.dart';
 import '../../../widgets/text_custom_widget.dart';
-import '../home/home_page_student.dart';
 
 class NotificationStudentPage extends StatefulWidget {
   const NotificationStudentPage({Key? key}) : super(key: key);
@@ -49,18 +49,14 @@ class _NotificationStudentPageState extends State<NotificationStudentPage> with 
           color: Colors.white,
         ),
         onPressed: () {
-          Navigator.pop(context);
+          context.vxNav.pop();
         },
       ),
       actions: [
         IconButton(
           icon: const Icon(Icons.home, color: Colors.white),
           onPressed: () {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => const HomePageStudent()),
-                (route) => false);
+            context.vxNav.clearAndPush(Uri.parse(RoutesPath.homeRoute));
           },
         ),
       ],

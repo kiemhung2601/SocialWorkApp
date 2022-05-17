@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:socialwork/pages/login/login_page.dart';
-import 'package:socialwork/pages/pages_student/history/history_student_page.dart';
-import 'package:socialwork/pages/pages_student/news/news_student_page.dart';
-import 'package:socialwork/pages/pages_student/notification/notification_student_page.dart';
-import 'package:socialwork/pages/pages_student/qr_scan/qr_scan_page.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:socialwork/utils/utils.dart';
 import 'package:socialwork/widgets/text_custom_widget.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../../routes.dart';
 import '../../../utils/constants.dart';
 
 class HomePageStudent extends StatefulWidget {
@@ -38,12 +34,7 @@ class _HomePageStudentState extends State<HomePageStudent> {
         IconButton(
           icon: const Icon(Icons.notifications_none, color: Colors.white),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) =>
-                      const NotificationStudentPage()),
-            );
+            context.vxNav.push(Uri.parse(RoutesPath.notificationRoute));
           },
         ),
         IconButton(
@@ -53,12 +44,8 @@ class _HomePageStudentState extends State<HomePageStudent> {
               context: context,
               title: 'Bạn muốn thoát hả?',
               onConfirmClick: () {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                        const LoginPage()),
-                    ModalRoute.withName('/'));
+                Navigator.pop(context);
+                context.vxNav.clearAndPush(Uri.parse(RoutesPath.loginRoute));
               },
               onCancelClick: () {
                 Navigator.pop(context);
@@ -127,35 +114,25 @@ class _HomePageStudentState extends State<HomePageStudent> {
         InkWell(
           child: _iconFlow(_iconNews, "Bảng tin"),
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const NewsStudentPage()),
-            );
+            context.vxNav.push(Uri.parse(RoutesPath.newsRoute));
           },
         ),
         InkWell(
           child: _iconFlow(_iconQr, "Quét QR"),
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const QrScanPage()),
-            );
+            context.vxNav.push(Uri.parse(RoutesPath.qrScanRoute));
           },
         ),
         InkWell(
           child: _iconFlow(_iconUser, "Thông tin"),
           onTap: () {
-            Navigator.pushNamed(context, '/informationStudentPage');
+            context.vxNav.push(Uri.parse(RoutesPath.informationRoute));
           },
         ),
         InkWell(
           child: _iconFlow(_iconHistory, "Lịch sử"),
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const HistoryStudentPage()),
-            );
+            context.vxNav.push(Uri.parse(RoutesPath.historyRoute));
           },
         ),
       ],

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:socialwork/pages/pages_student/details_news/details_news_page.dart';
-import 'package:socialwork/pages/pages_student/home/home_page_student.dart';
 import 'package:socialwork/widgets/text_custom_widget.dart';
+import 'package:velocity_x/velocity_x.dart';
 
+import '../../../routes.dart';
 import '../../../utils/constants.dart';
 
 class NewsStudentPage extends StatefulWidget {
@@ -46,18 +47,14 @@ class _NewsStudentPageState extends State<NewsStudentPage> {
           color: Colors.white,
         ),
         onPressed: () {
-          Navigator.pop(context);
+          context.vxNav.pop();
         },
       ),
       actions: [
         IconButton(
           icon: const Icon(Icons.home, color: Colors.white),
           onPressed: () {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => const HomePageStudent()),
-                (route) => false);
+            context.vxNav.clearAndPush(Uri.parse(RoutesPath.homeRoute));
           },
         ),
       ],
@@ -145,7 +142,7 @@ class _NewsStudentPageState extends State<NewsStudentPage> {
                           child: Container(
                             margin: const EdgeInsets.all(20),
                             child: const Text(
-                              'Đây chỉ là một đoạn title để test mà thôi nhé',
+                              'Sự kiện Open DNTU 2022 tháng 06 sẽ diễn ra tại DNTU',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.white),
                             ),
@@ -155,11 +152,7 @@ class _NewsStudentPageState extends State<NewsStudentPage> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const DetailsNewsPage()));
+                    context.vxNav.push(Uri.parse(RoutesPath.detailsRoute));
                   },
                 );
               },
@@ -241,7 +234,7 @@ class _NewsStudentPageState extends State<NewsStudentPage> {
     String _urlImage =
         'https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?cs=srgb&dl=pexels-james-wheeler-417074.jpg&fm=jpg';
     String _title =
-        'Đây chỉ là một đoạn test nho nhỏ thôi nhé, các bạn đọc kĩ nha. Cảm ơn mọi người';
+        'Sự kiện Open DNTU 2022 tháng 06 sẽ diễn ra tại DNTU';
     double _score = 0.5;
     String _date = 'Today, 8:28AM';
     return ListView.builder(
@@ -250,11 +243,7 @@ class _NewsStudentPageState extends State<NewsStudentPage> {
           return InkWell(
             child: _viewEvent(_urlImage, _title, _score, _date),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          const DetailsNewsPage()));
+              context.vxNav.push(Uri.parse(RoutesPath.detailsRoute));
             },
           );
         });

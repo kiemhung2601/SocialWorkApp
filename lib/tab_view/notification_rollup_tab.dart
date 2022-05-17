@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
-import '../pages/pages_student/details_news/details_news_page.dart';
+import '../routes.dart';
 import '../utils/constants.dart';
 import '../widgets/text_custom_widget.dart';
 
@@ -97,7 +98,7 @@ class _NotificationRollUpTabState extends State<NotificationRollUpTab> {
                   bottom: Dimens.marginView, top: Dimens.marginView),
             ),
             const TextCustom(
-              'Đây chỉ là một đoạn test nhỏ thôi nhé, các bạn nhớ đọc kĩ nha hahah haa hâhahah',
+              'Sự kiện Open DNTU 2022 tháng 06 sẽ diễn ra tại DNTU',
               typeText: TypeText.body,
               fontSize: Dimens.nav,
               margin: EdgeInsets.only(bottom: Dimens.marginView),
@@ -133,11 +134,7 @@ class _NotificationRollUpTabState extends State<NotificationRollUpTab> {
               InkWell(
                 child: _viewNotification(type[index]),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                          const DetailsNewsPage()));
+                  context.vxNav.push(Uri.parse(RoutesPath.detailsRoute));
                 },
               ),
               const SizedBox(

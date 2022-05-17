@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:velocity_x/velocity_x.dart';
 
+import '../../../routes.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/text_custom_widget.dart';
-import '../home/home_page_student.dart';
 
 class InformationStudentPage extends StatefulWidget {
   const InformationStudentPage({Key? key}) : super(key: key);
@@ -31,18 +32,14 @@ class _InformationStudentPageState extends State<InformationStudentPage> {
           color: Colors.white,
         ),
         onPressed: () {
-          Navigator.pop(context);
+          context.vxNav.pop();
         },
       ),
       actions: [
         IconButton(
           icon: const Icon(Icons.home, color: Colors.white),
           onPressed: () {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => const HomePageStudent()),
-                (route) => false);
+            context.vxNav.clearAndPush(Uri.parse(RoutesPath.homeRoute));
           },
         ),
       ],

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:socialwork/widgets/button_custom_widget.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../../routes.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/utils.dart';
 import '../../../widgets/text_custom_widget.dart';
-import '../home/home_page_student.dart';
 
 class DetailsNewsPage extends StatefulWidget {
   const DetailsNewsPage({Key? key}) : super(key: key);
@@ -31,18 +31,14 @@ class _DetailsNewsPageState extends State<DetailsNewsPage> {
           color: Colors.white,
         ),
         onPressed: () {
-          Navigator.pop(context);
+          context.vxNav.pop();
         },
       ),
       actions: [
         IconButton(
           icon: const Icon(Icons.home, color: Colors.white),
           onPressed: () {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => const HomePageStudent()),
-                (route) => false);
+            context.vxNav.clearAndPush(Uri.parse(RoutesPath.homeRoute));
           },
         ),
       ],
@@ -80,7 +76,7 @@ class _DetailsNewsPageState extends State<DetailsNewsPage> {
         ),
         const HeightBox(Dimens.marginView),
         const TextCustom(
-          'Đây là title nè, để test chứ không làm gì cả hahah haha',
+          'Sự kiện Open DNTU 2022 tháng 06 sẽ diễn ra tại DNTU',
           typeText: TypeText.title,
           fontSize: Dimens.bigText1,
           maxLines: null,
